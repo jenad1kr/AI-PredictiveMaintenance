@@ -206,16 +206,22 @@
 			  "dependsOn": [
 				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
 			  ],
-			  "properties": {
-				"publisher": "Microsoft.OSTCExtensions",
-				"type": "CustomScriptForLinux",
-				"typeHandlerVersion": "1.4",
-				"autoUpgradeMinorVersion": true,
-				"settings": {
-				  "fileUris": "[split(variables('fileUris'), ' ')]",
-				  "commandToExecute": "[variables('commandToExecute')]"
-				}
-			  }
+			"properties": {
+    "publisher": "Microsoft.Azure.Extensions",
+    "type": "CustomScript",
+    "typeHandlerVersion": "2.0",
+    "autoUpgradeMinorVersion": true,
+    "settings": {
+      "skipDos2Unix":false,
+      "timestamp":123456789          
+    },
+    "protectedSettings": {
+       "commandToExecute": "<command-to-execute>",
+       "script": "<base64-script-to-execute>",
+       "storageAccountName": "<storage-account-name>",
+       "storageAccountKey": "<storage-account-key>",
+       "fileUris": ["https://.."]  
+    }
 			 }
 			]
         }
